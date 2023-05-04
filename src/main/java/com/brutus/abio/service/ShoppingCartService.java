@@ -262,4 +262,12 @@ public class ShoppingCartService {
     }
 
 
+    public List<OrderDetails> findAllExpiredOrders(LocalDateTime expirationTime) {
+        return orderService.findAllExpiredOrders(expirationTime);
+    }
+
+    public void delete(OrderDetails order) {
+        cartRepository.delete(order.getCart());
+        orderService.delete(order);
+    }
 }

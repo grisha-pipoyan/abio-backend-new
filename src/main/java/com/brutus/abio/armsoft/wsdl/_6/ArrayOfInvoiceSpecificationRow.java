@@ -29,7 +29,7 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfInvoiceSpecificationRow", propOrder = {
+@XmlType(name = "Specification", propOrder = {
     "invoiceSpecificationRow"
 })
 public class ArrayOfInvoiceSpecificationRow {

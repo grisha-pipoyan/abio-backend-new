@@ -825,7 +825,7 @@ public class CreateSaleDocInfo {
      *     
      */
     public void setSpecification(JAXBElement<ArrayOfInvoiceSpecificationRow> value) {
-        this.specification = ((JAXBElement<ArrayOfInvoiceSpecificationRow> ) value);
+        this.specification = value;
     }
 
     /**

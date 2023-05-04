@@ -1,8 +1,10 @@
 package com.brutus.abio.controller.admin;
 
 import com.brutus.abio.controller.admin.dto.OrderDetailsDTO;
+import com.brutus.abio.exception.BadRequestException;
 import com.brutus.abio.persistance.order.OrderDetails;
 import com.brutus.abio.persistance.order.PaymentStatus;
+import com.brutus.abio.service.ArmSoftService;
 import com.brutus.abio.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +21,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final ArmSoftService armSoftService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/setPayed")
@@ -28,6 +31,13 @@ public class OrderController {
 
         orderService.save(orderDetails);
         // TODO: 3/11/2023 send to hc
+
+        try {
+            armSoftService.sendSaleDocument(orderDetails);
+        }catch (Exception e){
+            throw new BadRequestException(e.getMessage());
+        }
+
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

@@ -38,5 +38,4 @@ public class HCUtils {
         product.setDiscountPrice(productHCDto.getDiscountPrice());
     }
 
-
 }

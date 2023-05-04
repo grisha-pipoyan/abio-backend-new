@@ -86,7 +86,7 @@ public class EmailService {
 //            String img = String.format("http://localhost:8080/abio/public/files?productCode=%s&fileName=%s",
 //                    productCode, imgNames.get(0));
             String img = "";
-            BigDecimal totalPrice = model.getTotalDiscountPrice();
+            BigDecimal totalPrice = model.getDiscountPrice();
 
             String format = String.format(" <tr>\n" +
                             "                <td style=\"border: 1px solid #ddd; padding: 8px;\"><img src=\"%s\" alt=\"%s\" style=\"width: 100px; height: 100px;\">%s</td>\n" +

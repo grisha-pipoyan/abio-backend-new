@@ -137,7 +137,7 @@ public class ObjectFactory {
     private final static QName _PartnerGroupListRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "PartnerGroupListRow");
     private final static QName _PartnerListRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "PartnerListRow");
     private final static QName _ArrayOfCashListRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "ArrayOfCashListRow");
-    private final static QName _ArrayOfInvoiceSpecificationRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "ArrayOfInvoiceSpecificationRow");
+    private final static QName _ArrayOfInvoiceSpecificationRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "Specification");
     private final static QName _ArrayOfPartnerBonusRemainsListRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "ArrayOfPartnerBonusRemainsListRow");
     private final static QName _MTReturnFromCustomerSpecificationRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "MTReturnFromCustomerSpecificationRow");
     private final static QName _ArrayOfPriceListRow_QNAME = new QName("http://www.armsoft.am/Accountant/6.0", "ArrayOfPriceListRow");
@@ -3821,7 +3821,7 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://www.armsoft.am/Accountant/6.0", name = "ArrayOfInvoiceSpecificationRow")
     public JAXBElement<ArrayOfInvoiceSpecificationRow> createArrayOfInvoiceSpecificationRow(ArrayOfInvoiceSpecificationRow value) {
-        return new JAXBElement<ArrayOfInvoiceSpecificationRow>(_ArrayOfInvoiceSpecificationRow_QNAME, ArrayOfInvoiceSpecificationRow.class, null, value);
+        return new JAXBElement<>(_ArrayOfInvoiceSpecificationRow_QNAME, ArrayOfInvoiceSpecificationRow.class, null, value);
     }
 
     /**

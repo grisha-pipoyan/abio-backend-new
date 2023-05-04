@@ -6,6 +6,7 @@ import com.brutus.abio.controller.customer.dto.CartDTO;
 import com.brutus.abio.controller.customer.dto.ConfirmationDTO;
 import com.brutus.abio.persistance.delivery.DeliveryRegion;
 import com.brutus.abio.persistance.order.*;
+import com.brutus.abio.service.ArmSoftService;
 import com.brutus.abio.service.EmailService;
 import com.brutus.abio.service.IdramService;
 import com.brutus.abio.service.ShoppingCartService;
@@ -35,6 +36,7 @@ public class ShoppingCartController {
     private final AuthenticationService authenticationService;
     private final CartDTOMapper cartDTOMapper;
     private final OrderDetailsDTOMapper orderDetailsDTOMapper;
+    private final ArmSoftService armSoftService;
     private final EmailService emailService;
 
     @PostMapping("/create")
@@ -186,6 +188,13 @@ public class ShoppingCartController {
         Cart cart = cartService.findById(cartId);
         OrderDetails orderDetails = cartService.findOrderById(orderIdHeader);
 
+        try {
+            armSoftService.sendSaleDocument(orderDetails);
+
+        }catch (Exception e){
+            System.out.println();
+        }
+
         Jwt jwt = authenticationService.decodeJwtToken(jwtToken);
 
         ShoppingCartUtils.validate(orderDetails, cart, jwt);
@@ -212,7 +221,7 @@ public class ShoppingCartController {
                 String username = customer.getFirst_name() + " " + customer.getLast_name();
 
                 // TODO: 3/25/2023
-                //emailService.sendOrderConfirmationEmail(to, username, cartInfoModel);
+                emailService.sendOrderConfirmationEmail(to, username, cartDTO);
                 break;
             }
             case IDRAM:

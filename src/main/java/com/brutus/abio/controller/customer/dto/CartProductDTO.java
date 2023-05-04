@@ -12,12 +12,12 @@ import java.math.BigDecimal;
 public class CartProductDTO {
     private String productCode;
     private Integer quantity;
-    private BigDecimal totalNormalPrice;
-    private BigDecimal totalDiscountPrice;
+    private BigDecimal price;
+    private BigDecimal discountPrice;
     private String promocode;
 
     public boolean hasDiscount() {
-        return totalDiscountPrice.compareTo(BigDecimal.ZERO) != 0;
+        return discountPrice.compareTo(BigDecimal.ZERO) != 0;
     }
 
 }

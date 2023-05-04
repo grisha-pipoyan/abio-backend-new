@@ -1,7 +1,7 @@
 package com.brutus.abio.tasks;
 
 import com.brutus.abio.persistance.order.OrderDetails;
-import com.brutus.abio.service.OrderService;
+import com.brutus.abio.service.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,16 +14,18 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderDetailsCleanUpTask {
-    private final OrderService orderService;
+
+    private final ShoppingCartService shoppingCartService;
 
     @Scheduled(fixedRate = 60000) // run every minute
     public void cleanupExpiredOrders() {
         log.info("Cleaning up...");
         LocalDateTime expirationTime = LocalDateTime.now().minusMinutes(15);
-        List<OrderDetails> orderDetails = orderService.findAllExpiredOrders(expirationTime);
+        List<OrderDetails> orderDetails = shoppingCartService.findAllExpiredOrders(expirationTime);
         for (OrderDetails order :
                 orderDetails) {
-            orderService.delete(order);
+            shoppingCartService.delete(order);
         }
     }
+
 }

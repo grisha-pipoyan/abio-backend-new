@@ -308,14 +308,6 @@ public class ProductService {
 
         List<Product> all = productRepository.findAll();
 
-//        if (type == 1) {
-//            all = productRepository.findAllServiceProducts();
-//        } else if (type == 2) {
-//            all = productRepository.findAllGiftCardProducts();
-//        } else {
-//            all = productRepository.findAllProductsNotStartingWith7777Or8888();
-//        }
-
         all.sort(Comparator.comparing(Product::getId).reversed());
 
         return all.stream().map(productCsvDTOMapper).collect(Collectors.toList());
@@ -378,15 +370,6 @@ public class ProductService {
         }
 
         List<Product> all = productRepository.findAll();
-
-//        if (type == 1) {
-//            all = productRepository.findAllServiceProducts();
-//        } else if (type == 2) {
-//            all = productRepository.findAllGiftCardProducts();
-//        } else {
-//            all = productRepository.findAllProductsNotStartingWith7777Or8888();
-//        }
-
         List<Product> products = new ArrayList<>();
 
         switch (action) {
@@ -444,14 +427,6 @@ public class ProductService {
             all = productRepository.findAllProductsWithEmptyDescriptions();
         }
 
-//        if (type == 1) {
-//            all = productRepository.findProductsStartingWith7777ByCriteria(has);
-//        } else if (type == 2) {
-//            all = productRepository.findProductsStartingWith8888ByCriteria(has);
-//        } else {
-//            all = productRepository.findAllProductsNotStartingWith7777Or8888ByHavingDescription(has);
-//        }
-
         all.sort(Comparator.comparing(Product::getId).reversed());
 
         return all.stream().map(productCsvDTOMapper).collect(Collectors.toList());
@@ -460,27 +435,13 @@ public class ProductService {
     public List<ProductCsvDTO> getProductsByHavingPictures(Boolean has) {
 
         List<Product> all = productRepository.findAllByHasPicturesEquals(has);
-//        if (type == 1) {
-//            all = productRepository.findAllServiceProducts();
-//        } else if (type == 2) {
-//            all = productRepository.findAllGiftCardProducts();
-//        } else {
-//            all = productRepository.findAllProductsNotStartingWith7777Or8888();
-//        }
 
         return all.stream().map(productCsvDTOMapper).collect(Collectors.toList());
     }
 
     public List<ProductCsvDTO> getByNameContaining(String searchString) {
 
-        List<Product> all = productRepository.findProductsByNameContaining(searchString);
-//        if (type == 1) {
-//            all = productRepository.findProductsStartingWith7777AndHavingNameContaining(searchString);
-//        } else if (type == 2) {
-//            all = productRepository.findProductsStartingWith8888AndHavingNameContaining(searchString);
-//        } else {
-//            all = productRepository.findAllProductsNotStartingWith7777Or8888AndNameContaining(searchString);
-//        }
+        List<Product> all = productRepository.findProductsByNameContaining(searchString.toLowerCase());
 
         all.sort(Comparator.comparing(Product::getId).reversed());
 
